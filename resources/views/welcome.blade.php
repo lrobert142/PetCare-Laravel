@@ -28,20 +28,27 @@
   <body>
 
     <h1>Pets</h1>
-    @foreach ($pets as $pet)
-      <div class="pet__card">
-        <img class="pet__card--image" src="{{ $pet['photo'] }}" alt="{{ $pet['name'] }}" />
-        <div class="pet__card--details">
-          <strong>{{ $pet['name'] }}</strong>
-          <p>
-            Age: {{ $pet['age'] }} years old
-          </p>
-          <p>
-            Weight: {{ $pet['weight'] }}g
-          </p>
+    @if (count($pets) > 0)
+      @foreach ($pets as $pet)
+        <div class="pet__card">
+          <img class="pet__card--image" src="{{ $pet['photo'] }}" alt="{{ $pet['name'] }}" />
+          <div class="pet__card--details">
+            <strong>{{ $pet['name'] }}</strong>
+            <p>
+              Age: {{ $pet['age'] }} years old
+            </p>
+            <p>
+              Weight: {{ $pet['weight'] }}g
+            </p>
+          </div>
         </div>
-      </div>
-    @endforeach
+      @endforeach
+    @else
+      <p>
+        You do not yet have any pets added. Why not <a href="#">add one now!</a>
+      </p>
+    @endif
+
 
   </body>
 </html>

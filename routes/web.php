@@ -11,27 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-  $pets = [
-    [
-      'photo' => 'http://placehold.it/100x100',
-      'name' => 'Grumpy',
-      'age' => 1,
-      'weight' => 270
-    ],
-    [
-      'photo' => 'http://placehold.it/100x100',
-      'name' => 'Hiccup',
-      'age' => 1,
-      'weight' => 170
-    ],
-    [
-      'photo' => 'http://placehold.it/100x100',
-      'name' => 'Scramasax',
-      'age' => 'Unknown',
-      'weight' => 3000
-    ]
-  ];
+Route::get('/pets', function () {
+  $pets = DB::table('pets')->get();
 
-  return view('welcome', compact('pets'));
+  return view('pets.index', compact('pets'));
+});
+
+Route::get('/pets/{pet}', function ($id) {
+  $pet = DB::table('pets')->find($id);
+
+  return view('pets.show', compact('pet'));
 });

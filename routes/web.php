@@ -12,5 +12,26 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  $pets = [
+    [
+      'photo' => 'http://placehold.it/100x100',
+      'name' => 'Grumpy',
+      'age' => 1,
+      'weight' => 270
+    ],
+    [
+      'photo' => 'http://placehold.it/100x100',
+      'name' => 'Hiccup',
+      'age' => 1,
+      'weight' => 170
+    ],
+    [
+      'photo' => 'http://placehold.it/100x100',
+      'name' => 'Scramasax',
+      'age' => 'Unknown',
+      'weight' => 3000
+    ]
+  ];
+
+  return view('welcome', compact('pets'));
 });

@@ -37,6 +37,11 @@ class PetsController extends Controller
         'photo_url' => $path,
       ]);
 
-      return redirect('/pets');
+      return redirect('/pets')->with('notifications', [
+        'type' => 'success',
+        [
+          'Successfully added new pet: ' . request('name')
+        ]
+      ]);
     }
 }

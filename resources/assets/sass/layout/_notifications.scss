@@ -1,0 +1,13 @@
+/* Notifications Styling */
+.notifications__container--success {
+  background: $light-red;
+  color: $white;
+  border: thin solid $red;
+  border-radius: 50px;
+}
+
+.notifications {
+  list-style: none;
+}
+
+.notification {}

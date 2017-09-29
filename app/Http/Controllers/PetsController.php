@@ -18,4 +18,30 @@ class PetsController extends Controller
     {
       return view('pets.show', compact('pet'));
     }
+
+    public function create()
+    {
+      return view('pets.create');
+    }
+
+    public function store(Request $request)
+    {
+      request()->validate([
+        'name' => 'required|string',
+        'date_of_birth' => 'required|date',
+        'weight' => 'required|numeric',
+        'photo' => 'required|file'
+      ]);
+
+      $path = request()->photo->store('images', 'public');
+
+      Pet::create([
+        'name' => request('name'),
+        'date_of_birth' => request('date_of_birth'),
+        'weight' => request('weight'),
+        'photo_url' => $path,
+      ]);
+
+      return redirect('/pets');
+    }
 }

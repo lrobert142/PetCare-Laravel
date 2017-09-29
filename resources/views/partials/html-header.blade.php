@@ -13,14 +13,13 @@
 
     .pet__card--image {
       display: inline-block;
-      max-width: 100px;
+      width: auto;
+      height: 100%;
       margin-right: 20px;
-      flex: 1;
     }
 
     .pet__card--details {
       display: inline-block;
-      flex: 1;
     }
   </style>
 </head>

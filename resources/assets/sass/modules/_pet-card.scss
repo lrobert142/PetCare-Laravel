@@ -5,6 +5,7 @@
 
 .pet__card {
   @include column(1/4, $cycle: 4);
+  min-height: 500px;
   margin-bottom: $small-spacer;
   padding: $small-spacer;
   border: thin solid $light-grey;
@@ -22,6 +23,7 @@
 
   @include breakpoint(max-width 700px) {
     @include stack();
+    min-height: 400px;
   }
 }
 

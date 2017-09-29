@@ -19,11 +19,6 @@ class PetsController extends Controller
       return view('pets.show', compact('pet'));
     }
 
-    public function create()
-    {
-      return view('pets.create');
-    }
-
     public function store(Request $request)
     {
       request()->validate([

@@ -3,7 +3,7 @@
 @section('content')
 
   <h1>Pets</h1>
-  <a href="#add-pet">Add New</a>
+  <a data-remodal-target="add-pet">Add New</a>
   @if(count($pets) > 0)
     @foreach($pets as $pet)
       <div class="pet__card">
@@ -22,7 +22,7 @@
     @endforeach
   @else
     <p>
-      You do not yet have any pets added. Why not <a href="#add-pet">add one now!</a>
+      You do not yet have any pets added. Why not <a data-remodal-target="add-pet" href="#">add one now!</a>
     </p>
   @endif
 
@@ -40,22 +40,18 @@
       </div>
     @endif
 
-    <form method="POST" action="/pets" enctype="multipart/form-data">
+    <form class="add-pet-form" method="POST" action="/pets" enctype="multipart/form-data">
       <label for="name">Name:</label>
       <input id="name" type="text" name="name" placeholder="Name"  />
-      <br />
 
       <label for="date_of_birth">Date of Birth:</label>
       <input id="date_of_birth" type="date" name="date_of_birth" placeholder="YYYY-MM-DD"  />
-      <br />
 
       <label for="weight">Weight (g):</label>
       <input id="weight" type="number" name="weight" placeholder="Weight in grams"  />
-      <br />
 
       <label for="photo">Photo</label>
       <input id="photo" type="file" name="photo" placeholder="Photo"  />
-      <br />
 
       {{ csrf_field() }}
 

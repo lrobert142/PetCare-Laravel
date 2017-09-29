@@ -6,13 +6,12 @@
 }
 
 label {
-  display: block;
-  margin-left: 10px;
   margin-bottom: 5px;
   font-size: rem(8pt);
 }
 
 input {
+  display: block;
   appearance: none;
   margin-bottom: $small-spacer;
   padding: ($small-spacer / 2) $small-spacer;

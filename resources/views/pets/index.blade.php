@@ -28,7 +28,7 @@
 
   <div class="remodal" data-remodal-id="add-pet">
     <button data-remodal-action="close" class="remodal-close"></button>
-    <h1>New Pet</h1>
+    <h1>Add New Pet</h1>
 
     @if ($errors->any())
       <div class="errors__container">

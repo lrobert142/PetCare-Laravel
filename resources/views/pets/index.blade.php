@@ -3,7 +3,7 @@
 @section('content')
 
   <h1>Pets</h1>
-  <a data-remodal-target="add-pet">Add New</a>
+  <a data-remodal-target="add-pet" href="#">Add New</a>
   @if(count($pets) > 0)
     @foreach($pets as $pet)
       <div class="pet__card">

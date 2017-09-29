@@ -1,5 +1,6 @@
 /* Button Mixins */
 @mixin rounded-button($color, $padding, $radius) {
+  @include transition(all 0.5s ease-in-out);
   display: inline-block;
   border: $button-border-width solid $color;
   border-radius: $radius;
@@ -13,6 +14,7 @@
 }
 
 @mixin rounded-button-filled($background-color, $color, $padding, $radius) {
+  @include transition(all 0.5s ease-in-out);
   display: inline-block;
   border: $button-border-width solid $background-color;
   border-radius: $radius;

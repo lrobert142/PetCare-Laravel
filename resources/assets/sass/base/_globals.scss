@@ -1,0 +1,22 @@
+/* Globals Styles */
+* {
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+  outline: none;
+}
+
+label {
+  display: block;
+  margin-left: 10px;
+  margin-bottom: 5px;
+  font-size: rem(8pt);
+}
+
+input {
+  appearance: none;
+  margin-bottom: $small-spacer;
+  padding: ($small-spacer / 2) $small-spacer;
+  font-size: rem(14px);
+  border: thin solid grey;
+  border-radius: 50px;
+}

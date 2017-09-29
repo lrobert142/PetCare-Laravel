@@ -1,0 +1,33 @@
+/* Button Mixins */
+@mixin rounded-button($color, $padding, $radius) {
+  display: inline-block;
+  border: $button-border-width solid $color;
+  border-radius: $radius;
+  padding: $padding;
+  color: $color;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+@mixin rounded-button-filled($background-color, $color, $padding, $radius) {
+  display: inline-block;
+  border: $button-border-width solid $background-color;
+  border-radius: $radius;
+  padding: $padding;
+  color: $color;
+  background-color: $background-color;
+  text-decoration: none;
+  text-align: center;
+  font-weight: bold;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  &:hover {
+    border-color: $background-color;
+    background-color: $color;
+    color: $background-color;
+  }
+}

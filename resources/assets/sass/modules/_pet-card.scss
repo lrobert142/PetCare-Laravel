@@ -1,18 +1,43 @@
 /* Pet Card Details */
+.pet__cards {
+  padding: $small-spacer;
+}
+
 .pet__card {
-  display: flex;
-  border: thin solid grey;
+  @include column(1/4, $cycle: 4);
+  margin-bottom: $small-spacer;
+  padding: $small-spacer;
+  border: thin solid $light-grey;
   border-radius: 10px;
-  padding: 20px;
+  color: $black;
+  text-decoration: none;
+
+  @include breakpoint(max-width 1300px) {
+    @include column(1/3, $cycle: 3);
+  }
+
+  @include breakpoint(max-width 1000px) {
+    @include column(1/2, $cycle: 2);
+  }
+
+  @include breakpoint(max-width 700px) {
+    @include stack();
+  }
+}
+
+.pet__card--heading {
+  font-size: rem(20pt);
+  text-align: center;
 }
 
 .pet__card--image {
-  display: inline-block;
-  width: auto;
-  height: 100%;
-  margin-right: 20px;
+  display: block;
+  margin: 0 auto $small-spacer;
+  text-align: center;
 }
 
-.pet__card--details {
-  display: inline-block;
+.smalltext {
+  margin: 0;
+  font-size: rem(10pt);
+  text-align: center;
 }

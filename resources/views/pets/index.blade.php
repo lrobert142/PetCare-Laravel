@@ -2,24 +2,30 @@
 
 @section('content')
 
-  <h1>Pets</h1>
   <a data-remodal-target="add-pet" href="#">Add New</a>
+  <h1>Pets</h1>
   @if(count($pets) > 0)
-    @foreach($pets as $pet)
-      <div class="pet__card">
-        <img class="pet__card--image" src="{{ $pet->photo_url }}" alt="{{ $pet->name }}" />
-        <div class="pet__card--details">
-          <strong>{{ $pet->name }}</strong>
-          <p>
-            Date of Birth: {{ $pet->date_of_birth }}
+    <div class="pet__cards">
+      @foreach($pets as $pet)
+        <a class="pet__card" href="/pets/{{ $pet->id }}" data-mh="pet-card">
+          <p class="smalltext">
+            Tap / Click for additional details
           </p>
+          <h3 class="pet__card--heading">{{ $pet->name }}</h3>
+          <img class="pet__card--image" src="{{ $pet->photo_url }}" alt="{{ $pet->name }}" />
+
+          <strong>Date of Birth:</strong>
           <p>
-            Weight: {{ $pet->weight }}g
+            {{ \Carbon\Carbon::parse($pet->date_of_birth)->format('dS F Y')}}
           </p>
-          <a href="/pets/{{ $pet->id }}">See all details</a>
-        </div>
-      </div>
-    @endforeach
+
+          <strong>Weight:</strong>
+          <p>
+            {{ $pet->weight }}g
+          </p>
+        </a>
+      @endforeach
+    </div>
   @else
     <p>
       You do not yet have any pets added. Why not <a data-remodal-target="add-pet" href="#">add one now!</a>

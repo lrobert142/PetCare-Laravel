@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pet;
+use App\Http\Requests\AddNewPet;
 
 class PetsController extends Controller
 {
@@ -19,15 +20,8 @@ class PetsController extends Controller
       return view('pets.show', compact('pet'));
     }
 
-    public function store(Request $request)
+    public function store(AddNewPet $request)
     {
-      request()->validate([
-        'name' => 'required|string',
-        'date_of_birth' => 'required|date',
-        'weight' => 'required|numeric',
-        'photo' => 'required|file'
-      ]);
-
       $path = request()->photo->store('images', 'public');
 
       Pet::create([

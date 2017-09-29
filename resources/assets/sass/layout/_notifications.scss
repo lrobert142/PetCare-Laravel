@@ -1,9 +1,20 @@
 /* Notifications Styling */
+.notifications__container {
+  position: fixed;
+  width: 100%;
+  padding: $small-spacer;
+}
+
 .notifications__container--success {
-  background: $light-red;
-  color: $white;
-  border: thin solid $red;
-  border-radius: 50px;
+  background: $light-green;
+  color: $green;
+  border: thin solid $green;
+}
+
+.notifications__container--close {
+  float: right;
+  padding: 0 10px;
+  cursor: pointer;
 }
 
 .notifications {

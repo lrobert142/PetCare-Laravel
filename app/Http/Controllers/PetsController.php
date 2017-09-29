@@ -33,7 +33,7 @@ class PetsController extends Controller
 
       return redirect('/pets')->with('notifications', [
         'type' => 'success',
-        [
+        'messages' => [
           'Successfully added new pet: ' . request('name')
         ]
       ]);

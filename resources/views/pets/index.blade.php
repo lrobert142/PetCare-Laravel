@@ -16,7 +16,7 @@
 
           <strong>Date of Birth:</strong>
           <p>
-            {{ \Carbon\Carbon::parse($pet->date_of_birth)->format('dS F Y')}}
+            {{ \Carbon\Carbon::parse($pet->date_of_birth)->format('dS F Y') }}
           </p>
 
           <strong>Weight:</strong>

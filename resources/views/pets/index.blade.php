@@ -56,7 +56,7 @@
       </div>
     @endif
 
-    <form class="add-pet-form" method="POST" action="/pets" enctype="multipart/form-data">
+    <form method="POST" action="/pets" enctype="multipart/form-data">
       <label for="photo">Photo*</label>
       <input id="photo" type="file" name="photo" placeholder="Photo" required />
 

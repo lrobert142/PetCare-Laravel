@@ -29,6 +29,11 @@ class PetsController extends Controller
         'date_of_birth' => request('date_of_birth'),
         'weight' => request('weight'),
         'photo_url' => $path,
+        'gender' => request('gender'),
+        'scientific_species_name' => request('scientific_species_name'),
+        'common_species_name' => request('common_species_name'),
+        'length' => request('length'),
+        'notes' => request('notes'),
       ]);
 
       return redirect('/pets')->with('notifications', [

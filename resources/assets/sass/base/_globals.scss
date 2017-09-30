@@ -22,12 +22,12 @@ label {
   font-size: rem(12pt);
 }
 
-input {
+input, textarea {
   display: block;
   appearance: none;
   margin-bottom: $small-spacer;
   padding: ($small-spacer / 2) $small-spacer;
   font-size: rem(14px);
   border: thin solid grey;
-  border-radius: 50px;
+  border-radius: 20px;
 }

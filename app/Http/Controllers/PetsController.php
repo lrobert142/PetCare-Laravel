@@ -18,7 +18,7 @@ class PetsController extends Controller
 
     public function show(Pet $pet)
     {
-      $weighings = Weighing::where('pet_id', $pet->id)->orderBy('date', 'asc')->get();
+      $weighings = Pet::weighings($pet->id)->get();
       return view('pets.show', compact('pet', 'weighings'));
     }
 

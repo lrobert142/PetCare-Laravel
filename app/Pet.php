@@ -23,7 +23,7 @@ class Pet extends Model
     'notes',
   ];
 
-  public function weighings() {
-    //TODO
+  public static function weighings($pet_id) {
+    return Weighing::where('pet_id', $pet_id)->orderBy('date', 'asc');
   }
 }

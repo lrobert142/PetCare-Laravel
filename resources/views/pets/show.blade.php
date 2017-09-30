@@ -51,33 +51,44 @@
           </tr>
         </thead>
         <tbody>
-        @php ($previousWeighing = null)
-        @foreach ($weighings as $weighing)
-          <tr>
+        @php( $previousWeighing = null )
+        @foreach( $weighings as $weighing )
+          @if( $previousWeighing != null )
+            @php( $weightDiffGrams = ($weighing->weight - $previousWeighing->weight) . 'g' )
+            @php( $weightDiffPercentage = sprintf("%0.2f", ($weighing->weight - $previousWeighing->weight)/$previousWeighing->weight * 100) . '%' )
+          @else
+            @php( $weightDiffGrams = '-' )
+            @php( $weightDiffPercentage = '-' )
+          @endif
+          @php( $date = \Carbon\Carbon::parse($weighing->date)->format('dS F Y') )
+
+          <tr class="weighing" data-remodal-target="view-weighing-{{ $weighing->id }}">
             <td>
-              {{ \Carbon\Carbon::parse($weighing->date)->format('dS F Y') }}
+              {{ $date }}
             </td>
             <td>
               {{ $weighing->weight }}g
             </td>
             <td>
-              @if ($previousWeighing != null)
-                {{ $weighing->weight - $previousWeighing->weight }}g
-              @else
-                -
-              @endif
+              {{ $weightDiffGrams }}
             </td>
             <td>
-              @if ($previousWeighing != null)
-                {{ sprintf("%0.2f", ($weighing->weight - $previousWeighing->weight)/$previousWeighing->weight * 100) }}%
-              @else
-                -
-              @endif
+              {{ $weightDiffPercentage }}
             </td>
             <td>
               {{ $weighing->notes }}
             </td>
           </tr>
+
+          <div class="remodal" data-remodal-id="view-weighing-{{ $weighing->id }}">
+            <button data-remodal-action="close" class="remodal-close"></button>
+            <h1 id="view-weighing__title">Weight Record: {{ $date }}</h1>
+
+            <p><strong>Weight:</strong> {{ $weighing->weight }}g</p>
+            <p><strong>Diff:</strong> {{ $weightDiffGrams }} ({{ $weightDiffPercentage }})</p>
+            <p><strong>Notes:</strong> {{ $weighing->notes }}</p>
+          </div>
+
           @php ($previousWeighing = $weighing)
         @endforeach
         </tbody>
@@ -115,4 +126,18 @@
       <input class="button--primary" type="submit" value="Submit" />
     </form>
   </div>
+
+  {{-- <div class="remodal" data-remodal-id="view-weighing">
+    <button data-remodal-action="close" class="remodal-close"></button>
+    <h1 id="view-weighing__title"></h1>
+
+    <strong>Weight:</strong>
+    <p id="view-weighing__weight"></p>
+
+    <strong>Diff:</strong>
+    <p id="view-weighing__diff"></p>
+
+    <strong>Notes:</strong>
+    <p id="view-weighing__notes"></p>
+  </div> --}}
 @endsection

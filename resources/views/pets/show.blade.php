@@ -44,8 +44,14 @@
     @endif
 
     <form class="add-weighing-form" method="POST" action="/weighings" enctype="multipart/form-data">
-      <label for="TODO">TODO*</label>
-      <input id="TODO" type="text" name="TODO" placeholder="TODO" required />
+      <label for="date">Date*</label>
+      <input id="date" type="date" name="date" placeholder="Date of Weighing" value={{ now() }} required />
+
+      <label for="weight">Weight(g)*</label>
+      <input id="weight" type="number" name="weight" placeholder="Weight(g)" required />
+
+      <label for="notes">Notes</label>
+      <textarea id="notes" name="notes" placeholder="Additional notes (optional)"></textarea>
 
       {{ csrf_field() }}
 

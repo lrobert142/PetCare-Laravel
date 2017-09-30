@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class AddNewWeighing extends FormRequest
 {
-    // protected $redirect = '/pets#add-pet';
+    protected $redirect = $this->getRedirectUrl() . '#add-weighing';
 
     public function authorize()
     {

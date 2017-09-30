@@ -8,6 +8,12 @@
     <div class="pet__cards">
       @foreach($pets as $pet)
         <a class="pet__card" href="/pets/{{ $pet->id }}" data-mh="pet-card">
+          <form class="pet__card--delete" method="POST" action="/pet/{{ $pet->id }}">
+            {{ csrf_field() }}
+            {{ method_field('DELETE') }}
+            <input type="hidden" name="id" value="{{ $pet->id }}" />
+            <input type="submit" value="Delete" />
+          </form>
           <p class="smalltext">
             Tap / Click for additional details
           </p>

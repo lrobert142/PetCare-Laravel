@@ -43,3 +43,12 @@
   font-size: rem(10pt);
   text-align: center;
 }
+
+.pet__card--delete input[type=submit] {
+  float: right;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: $red;
+  cursor: pointer;
+}

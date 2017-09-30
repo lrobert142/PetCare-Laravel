@@ -43,4 +43,15 @@ class PetsController extends Controller
         ]
       ]);
     }
+
+    public function destroy(Pet $pet)
+    {
+      $pet->delete();
+      return redirect('/pets')->with('notifications', [
+        'type' => 'success',
+        'messages' => [
+          'Successfully removed pet'
+        ]
+      ]);
+    }
 }

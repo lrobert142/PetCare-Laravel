@@ -12,7 +12,7 @@
             Tap / Click for additional details
           </p>
           <h3 class="pet__card--heading">{{ $pet->name }}</h3>
-          <img class="pet__card--image" src="{{ $pet->photo_url }}" alt="{{ $pet->name }}" />
+          <img class="pet__card--image" src="/{{ $pet->photo_url }}" alt="{{ $pet->name }}" />
 
           <strong>Date of Birth:</strong>
           <p>

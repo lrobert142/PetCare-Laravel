@@ -41,6 +41,7 @@ class Pet extends Model
         $weightDiffPercentage = 0;
       endif;
 
+      $weighing->formatted_date = \Carbon\Carbon::parse($weighing->date)->format('dS F Y');
       $weighing->diff_grams = $weightDiffGrams;
       $weighing->diff_percent = $weightDiffPercentage;
       array_push($newWeighings, $weighing);

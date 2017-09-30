@@ -55,11 +55,9 @@
         </thead>
         <tbody>
         @foreach( $weighings as $weighing )
-          @php( $date = \Carbon\Carbon::parse($weighing->date)->format('dS F Y') )
-
           <tr class="weighing" data-remodal-target="view-weighing-{{ $weighing->id }}">
             <td>
-              {{ $date }}
+              {{ $weighing->formatted_date }}
             </td>
             <td>
               {{ $weighing->weight }}g
@@ -77,7 +75,7 @@
 
           <div class="remodal" data-remodal-id="view-weighing-{{ $weighing->id }}">
             <button data-remodal-action="close" class="remodal-close"></button>
-            <h1 id="view-weighing__title">Weight Record: {{ $date }}</h1>
+            <h1 id="view-weighing__title">Weight Record: {{ $weighing->formatted_date }}</h1>
 
             <p><strong>Weight:</strong> {{ $weighing->weight }}g</p>
             <p><strong>Diff:</strong> {{ sprintf("%0.2f", $weighing->diff_grams) }}g ({{ sprintf("%0.2f", $weighing->diff_percent) }}%)</p>

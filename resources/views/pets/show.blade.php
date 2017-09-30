@@ -126,18 +126,4 @@
       <input class="button--primary" type="submit" value="Submit" />
     </form>
   </div>
-
-  {{-- <div class="remodal" data-remodal-id="view-weighing">
-    <button data-remodal-action="close" class="remodal-close"></button>
-    <h1 id="view-weighing__title"></h1>
-
-    <strong>Weight:</strong>
-    <p id="view-weighing__weight"></p>
-
-    <strong>Diff:</strong>
-    <p id="view-weighing__diff"></p>
-
-    <strong>Notes:</strong>
-    <p id="view-weighing__notes"></p>
-  </div> --}}
 @endsection

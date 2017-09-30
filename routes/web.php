@@ -7,3 +7,5 @@ Route::get('/pets/{pet}', 'PetsController@show');
 Route::post('/pets', 'PetsController@store');
 
 Route::delete('/pet/{pet}', 'PetsController@destroy');
+
+Route::post('/weighings', 'WeighingsController@store');

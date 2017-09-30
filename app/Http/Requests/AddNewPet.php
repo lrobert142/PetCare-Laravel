@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class AddNewPet extends FormRequest
 {
-    protected $redirect = '/pets#add-pet';
-
     public function authorize()
     {
       return true;

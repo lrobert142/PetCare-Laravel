@@ -19,18 +19,16 @@ class PetsController extends Controller
 
     public function show(Pet $pet)
     {
-      $weighings = Pet::weighings($pet->id)->get();
-
       $lava = new LavaCharts;
+      $weighings = Pet::weighings($pet->id)->get();
       $weighingsTable = $lava->DataTable();
+
       $weighingsTable->addDateColumn('Date')
         ->addNumberColumn('Weight');
-      // TODO Random Data For Example
-      for ($a = 1; $a < 30; $a++) {
-          $weighingsTable->addRow([
-            '2015-10-' . $a, rand(800,1000)
-          ]);
-      }
+      foreach($weighings as $weighing):
+        $weighingsTable->addRow([$weighing->date, $weighing->weight]);
+      endforeach;
+
       $chart = $lava->LineChart('Weighings', $weighingsTable);
 
       return view('pets.show', compact('pet', 'weighings', 'lava'));

@@ -51,17 +51,32 @@
     @endif
 
     <form class="add-pet-form" method="POST" action="/pets" enctype="multipart/form-data">
-      <label for="name">Name:</label>
-      <input id="name" type="text" name="name" placeholder="Name"  />
+      <label for="photo">Photo*</label>
+      <input id="photo" type="file" name="photo" placeholder="Photo" required />
 
-      <label for="date_of_birth">Date of Birth:</label>
-      <input id="date_of_birth" type="date" name="date_of_birth" placeholder="YYYY-MM-DD"  />
+      <label for="name">Name*</label>
+      <input id="name" type="text" name="name" placeholder="Name" required />
 
-      <label for="weight">Weight (g):</label>
-      <input id="weight" type="number" name="weight" placeholder="Weight in grams"  />
+      <label for="date_of_birth">Date of Birth*</label>
+      <input id="date_of_birth" type="date" name="date_of_birth" placeholder="DD-MM-YYYY" required />
 
-      <label for="photo">Photo</label>
-      <input id="photo" type="file" name="photo" placeholder="Photo"  />
+      <label for="weight">Weight(g)*</label>
+      <input id="weight" type="number" name="weight" placeholder="Weight(g)" required />
+
+      <label for="gender">Gender*</label>
+      <input id="gender" type="text" name="gender" placeholder="Gender" required />
+
+      <label for="scientific_species_name">Scientific Species Name*</label>
+      <input id="scientific_species_name" type="text" name="scientific_species_name" placeholder="Ex. Liasis Olivaceus" required />
+
+      <label for="common_species_name">Common Species Name*</label>
+      <input id="common_species_name" type="text" name="common_species_name" placeholder="Ex. Olive Python" required />
+
+      <label for="length">Length(cm)*</label>
+      <input id="length" type="text" name="length" placeholder="Length(cm)" required />
+
+      <label for="notes">Notes</label>
+      <textarea id="notes" name="notes" rows="5" placeholder="Notes (optional)"></textarea>
 
       {{ csrf_field() }}
 

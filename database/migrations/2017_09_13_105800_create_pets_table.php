@@ -6,11 +6,6 @@ use Illuminate\Database\Migrations\Migration;
 
 class CreatePetsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('pets', function (Blueprint $table) {
@@ -25,14 +20,10 @@ class CreatePetsTable extends Migration
           $table->integer('length');
           $table->text('notes')->nullable();
           $table->timestamps();
+          $table->softDeletes();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
       Schema::dropIfExists('pets');

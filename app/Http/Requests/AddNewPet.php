@@ -16,10 +16,10 @@ class AddNewPet extends FormRequest
     public function rules()
     {
         return [
+          'photo' => 'required|file',
           'name' => 'required|string',
           'date_of_birth' => 'required|date',
           'weight' => 'required|numeric',
-          'photo' => 'required|file',
           'gender' => 'required|string',
           'scientific_species_name' => 'required|string',
           'common_species_name' => 'required|string',

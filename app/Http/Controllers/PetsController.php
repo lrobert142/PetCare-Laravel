@@ -20,15 +20,23 @@ class PetsController extends Controller
     public function show(Pet $pet)
     {
       $lava = new LavaCharts;
-      $weighings = Pet::weighings($pet->id)->get();
+      $weighings = Pet::weighings_with_diffs($pet->id);
       $weighingsTable = $lava->DataTable();
 
       $weighingsTable->addDateColumn('Date')
         ->addNumberColumn('Weight')
         ->addRoleColumn('string', 'tooltip', ['html' => true]);
+
+      $previousWeighing = null;
       foreach($weighings as $weighing):
-        $tooltip = '<strong>STRONG</strong><br /><p>SOME TEXT</p>';
+        $tooltip = '<div class="graph__tooltip">'
+          . '<strong>' . $weighing->date . '</strong>'
+          . '<br />' . '<strong>Weight:</strong> ' . $weighing->weight . 'g'
+          . '<br />' . '<strong>' . sprintf('%0.2f', $weighing->diff_grams) . 'g (' . sprintf('%0.2f', $weighing->diff_percent) . '%)' . '</strong>'
+          . '</div>';
+
         $weighingsTable->addRow([$weighing->date, $weighing->weight, $tooltip]);
+        $previousWeighing = $weighing;
       endforeach;
 
       $chartOptions = [

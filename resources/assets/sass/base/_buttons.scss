@@ -1,0 +1,4 @@
+/* Buttons Styling */
+.button--primary {
+  @include rounded-button-filled($black, $white, $button-padding-small, $button-radius-rounded);
+}

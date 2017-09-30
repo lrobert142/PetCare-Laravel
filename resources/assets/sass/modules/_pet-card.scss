@@ -1,0 +1,45 @@
+/* Pet Card Details */
+.pet__cards {
+  padding: $small-spacer;
+}
+
+.pet__card {
+  @include column(1/4, $cycle: 4);
+  min-height: 500px;
+  margin-bottom: $small-spacer;
+  padding: $small-spacer;
+  border: thin solid $light-grey;
+  border-radius: 10px;
+  color: $black;
+  text-decoration: none;
+
+  @include breakpoint(max-width 1300px) {
+    @include column(1/3, $cycle: 3);
+  }
+
+  @include breakpoint(max-width 1000px) {
+    @include column(1/2, $cycle: 2);
+  }
+
+  @include breakpoint(max-width 700px) {
+    @include stack();
+    min-height: 400px;
+  }
+}
+
+.pet__card--heading {
+  font-size: rem(20pt);
+  text-align: center;
+}
+
+.pet__card--image {
+  display: block;
+  margin: 0 auto $small-spacer;
+  text-align: center;
+}
+
+.smalltext {
+  margin: 0;
+  font-size: rem(10pt);
+  text-align: center;
+}

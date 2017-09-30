@@ -1,0 +1,21 @@
+/* Error Styling */
+.errors__container {
+  margin-bottom: $small-spacer;
+  padding: $small-spacer;
+  background-color: $light-red;
+  border: thin solid $red;
+  border-radius: 10px;
+}
+
+.errors {
+  list-style: none;
+}
+
+.error {
+  padding-bottom: $small-spacer / 2;
+  color: $white;
+
+  @include last(1) {
+    padding-bottom: 0;
+  }
+}

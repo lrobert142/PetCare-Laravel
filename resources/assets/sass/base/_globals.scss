@@ -1,0 +1,33 @@
+/* Globals Styles */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: 'Open Sans', sans-serif;
+  box-sizing: border-box;
+  outline: none;
+}
+
+h1, h2, h3, h4, h5, h6, p {
+  margin-bottom: $small-spacer / 2;
+}
+
+img {
+  width: auto;
+  height: auto;
+  max-width: 100%;
+}
+
+label {
+  margin-bottom: 5px;
+  font-size: rem(12pt);
+}
+
+input {
+  display: block;
+  appearance: none;
+  margin-bottom: $small-spacer;
+  padding: ($small-spacer / 2) $small-spacer;
+  font-size: rem(14px);
+  border: thin solid grey;
+  border-radius: 50px;
+}

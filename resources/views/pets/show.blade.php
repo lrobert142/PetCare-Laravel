@@ -29,6 +29,9 @@
     {{ $pet->notes }}
   </p>
 
+  <div id="weighings-table"></div>
+  {!! $lava->render('LineChart', 'Weighings') !!}
+
   <ul>
       <table>
         <thead>
@@ -51,29 +54,19 @@
           </tr>
         </thead>
         <tbody>
-        @php( $previousWeighing = null )
         @foreach( $weighings as $weighing )
-          @if( $previousWeighing != null )
-            @php( $weightDiffGrams = ($weighing->weight - $previousWeighing->weight) . 'g' )
-            @php( $weightDiffPercentage = sprintf("%0.2f", ($weighing->weight - $previousWeighing->weight)/$previousWeighing->weight * 100) . '%' )
-          @else
-            @php( $weightDiffGrams = '-' )
-            @php( $weightDiffPercentage = '-' )
-          @endif
-          @php( $date = \Carbon\Carbon::parse($weighing->date)->format('dS F Y') )
-
           <tr class="weighing" data-remodal-target="view-weighing-{{ $weighing->id }}">
             <td>
-              {{ $date }}
+              {{ $weighing->formatted_date }}
             </td>
             <td>
               {{ $weighing->weight }}g
             </td>
             <td>
-              {{ $weightDiffGrams }}
+              {{ sprintf("%0.2f", $weighing->diff_grams) }}g
             </td>
             <td>
-              {{ $weightDiffPercentage }}
+              {{ sprintf("%0.2f", $weighing->diff_percent) }}%
             </td>
             <td>
               {{ $weighing->notes }}
@@ -82,14 +75,12 @@
 
           <div class="remodal" data-remodal-id="view-weighing-{{ $weighing->id }}">
             <button data-remodal-action="close" class="remodal-close"></button>
-            <h1 id="view-weighing__title">Weight Record: {{ $date }}</h1>
+            <h1 id="view-weighing__title">Weight Record: {{ $weighing->formatted_date }}</h1>
 
             <p><strong>Weight:</strong> {{ $weighing->weight }}g</p>
-            <p><strong>Diff:</strong> {{ $weightDiffGrams }} ({{ $weightDiffPercentage }})</p>
+            <p><strong>Diff:</strong> {{ sprintf("%0.2f", $weighing->diff_grams) }}g ({{ sprintf("%0.2f", $weighing->diff_percent) }}%)</p>
             <p><strong>Notes:</strong> {{ $weighing->notes }}</p>
           </div>
-
-          @php ($previousWeighing = $weighing)
         @endforeach
         </tbody>
       </table>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Khill\Lavacharts\Lavacharts;
 use App\Pet;
 use App\Weighing;
 use App\Http\Requests\AddNewPet;
@@ -18,8 +19,34 @@ class PetsController extends Controller
 
     public function show(Pet $pet)
     {
-      $weighings = Pet::weighings($pet->id)->get();
-      return view('pets.show', compact('pet', 'weighings'));
+      $lava = new LavaCharts;
+      $weighings = Pet::weighings_with_diffs($pet->id);
+      $weighingsTable = $lava->DataTable();
+
+      $weighingsTable->addDateColumn('Date')
+        ->addNumberColumn('Weight')
+        ->addRoleColumn('string', 'tooltip', ['html' => true]);
+
+      $previousWeighing = null;
+      foreach($weighings as $weighing):
+        $tooltip = '<div class="graph__tooltip">'
+          . '<strong>' . $weighing->formatted_date . '</strong>'
+          . '<br />' . '<strong>Weight:</strong> ' . $weighing->weight . 'g'
+          . '<br />' . '<strong>' . sprintf('%0.2f', $weighing->diff_grams) . 'g (' . sprintf('%0.2f', $weighing->diff_percent) . '%)' . '</strong>'
+          . '</div>';
+
+        $weighingsTable->addRow([$weighing->date, $weighing->weight, $tooltip]);
+        $previousWeighing = $weighing;
+      endforeach;
+
+      $chartOptions = [
+        'title' => 'Weight History',
+        'elementId' => 'weighings-table',
+        'tooltip' => ['isHtml' => true],
+      ];
+      $chart = $lava->LineChart('Weighings', $weighingsTable, $chartOptions);
+
+      return view('pets.show', compact('pet', 'weighings', 'lava'));
     }
 
     public function store(AddNewPet $request)

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Khill\Lavacharts\Lavacharts;
 use App\Pet;
 use App\Weighing;
 use App\Http\Requests\AddNewPet;
@@ -19,7 +20,20 @@ class PetsController extends Controller
     public function show(Pet $pet)
     {
       $weighings = Pet::weighings($pet->id)->get();
-      return view('pets.show', compact('pet', 'weighings'));
+
+      $lava = new LavaCharts;
+      $weighingsTable = $lava->DataTable();
+      $weighingsTable->addDateColumn('Date')
+        ->addNumberColumn('Weight');
+      // TODO Random Data For Example
+      for ($a = 1; $a < 30; $a++) {
+          $weighingsTable->addRow([
+            '2015-10-' . $a, rand(800,1000)
+          ]);
+      }
+      $chart = $lava->LineChart('Weighings', $weighingsTable);
+
+      return view('pets.show', compact('pet', 'weighings', 'lava'));
     }
 
     public function store(AddNewPet $request)

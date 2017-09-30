@@ -95,6 +95,9 @@
       </table>
   </ul>
 
+  <div id="weighings-table"></div>
+  {!! $lava->render('LineChart', 'Weighings', 'weighings-table') !!}
+
   <div class="remodal" data-remodal-id="add-weighing">
     <button data-remodal-action="close" class="remodal-close"></button>
     <h1>Add New Weighing</h1>

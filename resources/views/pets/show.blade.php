@@ -29,6 +29,61 @@
     {{ $pet->notes }}
   </p>
 
+  <ul>
+      <table>
+        <thead>
+          <tr>
+            <th>
+              Date
+            </th>
+            <th>
+              Weight (g)
+            </th>
+            <th>
+              Diff
+            </th>
+            <th>
+              %
+            </th>
+            <th>
+              Notes
+            </th>
+          </tr>
+        </thead>
+        <tbody>
+        @php ($previousWeighing = null)
+        @foreach ($weighings as $weighing)
+          <tr>
+            <td>
+              {{ \Carbon\Carbon::parse($weighing->date)->format('dS F Y') }}
+            </td>
+            <td>
+              {{ $weighing->weight }}g
+            </td>
+            <td>
+              @if ($previousWeighing != null)
+                {{ $weighing->weight - $previousWeighing->weight }}g
+              @else
+                -
+              @endif
+            </td>
+            <td>
+              @if ($previousWeighing != null)
+                {{ sprintf("%0.2f", ($weighing->weight - $previousWeighing->weight)/$previousWeighing->weight * 100) }}%
+              @else
+                -
+              @endif
+            </td>
+            <td>
+              {{ $weighing->notes }}
+            </td>
+          </tr>
+          @php ($previousWeighing = $weighing)
+        @endforeach
+        </tbody>
+      </table>
+  </ul>
+
   <div class="remodal" data-remodal-id="add-weighing">
     <button data-remodal-action="close" class="remodal-close"></button>
     <h1>Add New Weighing</h1>

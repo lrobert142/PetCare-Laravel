@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Pet;
+use App\Weighing;
 use App\Http\Requests\AddNewPet;
 
 class PetsController extends Controller
@@ -17,7 +18,8 @@ class PetsController extends Controller
 
     public function show(Pet $pet)
     {
-      return view('pets.show', compact('pet'));
+      $weighings = Weighing::where('pet_id', $pet->id)->orderBy('date', 'asc')->get();
+      return view('pets.show', compact('pet', 'weighings'));
     }
 
     public function store(AddNewPet $request)

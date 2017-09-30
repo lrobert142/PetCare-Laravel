@@ -22,4 +22,8 @@ class Pet extends Model
     'length',
     'notes',
   ];
+
+  public function weighings() {
+    //TODO
+  }
 }

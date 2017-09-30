@@ -30,7 +30,7 @@ class PetsController extends Controller
       $previousWeighing = null;
       foreach($weighings as $weighing):
         $tooltip = '<div class="graph__tooltip">'
-          . '<strong>' . $weighing->date . '</strong>'
+          . '<strong>' . \Carbon\Carbon::parse($weighing->date)->format('dS F Y') . '</strong>'
           . '<br />' . '<strong>Weight:</strong> ' . $weighing->weight . 'g'
           . '<br />' . '<strong>' . sprintf('%0.2f', $weighing->diff_grams) . 'g (' . sprintf('%0.2f', $weighing->diff_percent) . '%)' . '</strong>'
           . '</div>';

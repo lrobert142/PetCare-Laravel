@@ -43,7 +43,7 @@
       </div>
     @endif
 
-    <form method="POST" action="/weighings" enctype="multipart/form-data">
+    <form method="POST" action="/weighings#add-weighing" enctype="multipart/form-data">
       <label for="date">Date*</label>
       <input id="date" type="date" name="date" placeholder="Date of Weighing" value={{ now() }} required />
 

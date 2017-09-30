@@ -6,8 +6,6 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class AddNewWeighing extends FormRequest
 {
-    protected $redirect = $this->getRedirectUrl() . '#add-weighing';
-
     public function authorize()
     {
       return true;

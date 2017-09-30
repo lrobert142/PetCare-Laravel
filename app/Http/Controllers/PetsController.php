@@ -24,12 +24,18 @@ class PetsController extends Controller
       $weighingsTable = $lava->DataTable();
 
       $weighingsTable->addDateColumn('Date')
-        ->addNumberColumn('Weight');
+        ->addNumberColumn('Weight')
+        ->addRoleColumn('string', 'tooltip', ['html' => true]);
       foreach($weighings as $weighing):
-        $weighingsTable->addRow([$weighing->date, $weighing->weight]);
+        $tooltip = '<strong>STRONG</strong><br /><p>SOME TEXT</p>';
+        $weighingsTable->addRow([$weighing->date, $weighing->weight, $tooltip]);
       endforeach;
 
-      $chart = $lava->LineChart('Weighings', $weighingsTable);
+      $chartOptions = [
+        'elementId' => 'weighings-table',
+        'tooltip' => ['isHtml' => true]
+      ];
+      $chart = $lava->LineChart('Weighings', $weighingsTable, $chartOptions);
 
       return view('pets.show', compact('pet', 'weighings', 'lava'));
     }

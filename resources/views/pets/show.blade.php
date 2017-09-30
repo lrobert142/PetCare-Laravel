@@ -96,7 +96,7 @@
   </ul>
 
   <div id="weighings-table"></div>
-  {!! $lava->render('LineChart', 'Weighings', 'weighings-table') !!}
+  {!! $lava->render('LineChart', 'Weighings') !!}
 
   <div class="remodal" data-remodal-id="add-weighing">
     <button data-remodal-action="close" class="remodal-close"></button>

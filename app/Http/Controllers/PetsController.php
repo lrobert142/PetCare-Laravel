@@ -40,8 +40,9 @@ class PetsController extends Controller
       endforeach;
 
       $chartOptions = [
+        'title' => 'Weight History',
         'elementId' => 'weighings-table',
-        'tooltip' => ['isHtml' => true]
+        'tooltip' => ['isHtml' => true],
       ];
       $chart = $lava->LineChart('Weighings', $weighingsTable, $chartOptions);
 

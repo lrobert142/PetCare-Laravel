@@ -8,9 +8,10 @@ class CreateWeighingsTable extends Migration
 {
     public function up()
     {
+      Schema::enableForeignKeyConstraints();
       Schema::create('weighings', function (Blueprint $table) {
         $table->increments('id');
-        $table->integer('pet_id');
+        $table->integer('pet_id')->unsigned();
         $table->integer('weight');
         $table->text('notes')->nullable();
         $table->timestamps();

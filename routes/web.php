@@ -9,3 +9,5 @@ Route::post('/pets', 'PetsController@store');
 Route::delete('/pet/{pet}', 'PetsController@destroy');
 
 Route::post('/weighings', 'WeighingsController@store');
+
+Route::patch('/weighings/{weighing}', 'WeighingsController@update');

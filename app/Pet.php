@@ -14,7 +14,6 @@ class Pet extends Model
   protected $fillable = [
     'name',
     'date_of_birth',
-    'weight',
     'photo_url',
     'gender',
     'scientific_species_name',
@@ -22,6 +21,11 @@ class Pet extends Model
     'length',
     'notes',
   ];
+
+  public function weight() {
+    // Use 'desc' order to get the latest weight record first
+    return Weighing::where('pet_id', $this->id)->orderBy('date', 'desc')->first()->weight;
+  }
 
   public static function weighings_scope($pet_id) {
     return Weighing::where('pet_id', $pet_id)->orderBy('date', 'asc');

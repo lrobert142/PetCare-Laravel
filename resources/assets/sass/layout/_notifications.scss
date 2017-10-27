@@ -11,6 +11,12 @@
   border: thin solid $green;
 }
 
+.notifications__container--error {
+  background: $light-red;
+  color: $red;
+  border: thin solid $red;
+}
+
 .notifications__container--close {
   float: right;
   padding: 0 10px;

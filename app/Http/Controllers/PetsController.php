@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
 use App\Pet;
@@ -53,17 +54,26 @@ class PetsController extends Controller
     {
       $path = request()->photo->store('images', 'public');
 
-      Pet::create([
-        'name' => request('name'),
-        'date_of_birth' => request('date_of_birth'),
-        'weight' => request('weight'),
-        'photo_url' => $path,
-        'gender' => request('gender'),
-        'scientific_species_name' => request('scientific_species_name'),
-        'common_species_name' => request('common_species_name'),
-        'length' => request('length'),
-        'notes' => request('notes'),
-      ]);
+      DB::transaction(function () {
+        $pet = Pet::create([
+          'name' => request('name'),
+          'date_of_birth' => request('date_of_birth'),
+          'photo_url' => $path,
+          'gender' => request('gender'),
+          'scientific_species_name' => request('scientific_species_name'),
+          'common_species_name' => request('common_species_name'),
+          'length' => request('length'),
+          'notes' => request('notes'),
+        ]);
+
+        Weighing::create([
+          'pet_id' => $pet->id,
+          'weight' => request('weight'),
+          'is_initial' => true,
+          'notes' => 'Initial Weight',
+        ]);
+      });
+
 
       return redirect('/pets')->with('notifications', [
         'type' => 'success',

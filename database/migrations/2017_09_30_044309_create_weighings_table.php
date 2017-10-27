@@ -12,8 +12,9 @@ class CreateWeighingsTable extends Migration
       Schema::create('weighings', function (Blueprint $table) {
         $table->increments('id');
         $table->integer('pet_id')->unsigned();
-        $table->date('date');
+        $table->date('date')->default(\Carbon\Carbon::now());
         $table->integer('weight');
+        $table->boolean('is_initial')->default(false);
         $table->text('notes')->nullable();
         $table->timestamps();
         $table->softDeletes();

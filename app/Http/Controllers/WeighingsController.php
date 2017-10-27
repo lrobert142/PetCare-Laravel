@@ -47,12 +47,23 @@ class WeighingsController extends Controller
 
   public function destroy(Weighing $weighing)
   {
-    $weighing->delete();
-    return redirect('/pets/' . request('pet_id'))->with('notifications', [
-      'type' => 'success',
-      'messages' => [
-        'Successfully removed weighing'
-      ]
-    ]);
+    if( !$weighing->is_initial ):
+      $weighing->delete();
+      $notifications = array(
+        'type' => 'error',
+        'messages' => array(
+          'Successfully removed weighing.'
+        )
+      );
+    else:
+      $notifications = array(
+        'type' => 'error',
+        'messages' => array(
+          'Error: Cannot Remove Initial Weight Record!'
+        )
+      );
+    endif;
+
+    return redirect('/pets/' . request('pet_id'))->with('notifications', $notifications);
   }
 }

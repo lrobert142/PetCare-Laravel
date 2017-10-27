@@ -27,10 +27,10 @@
 
           <strong>Weight:</strong>
           <p>
-            @if($pet->weight > 1000)
-              {{ sprintf("%0.2f",$pet->weight / 1000) }}kg
+            @if($pet->weight() > 1000)
+              {{ sprintf("%0.2f",$pet->weight() / 1000) }}kg
             @else
-              {{ $pet->weight }}g
+              {{ $pet->weight() }}g
             @endif
           </p>
         </a>

@@ -13,7 +13,6 @@ class CreatePetsTable extends Migration
           $table->string('photo_url');
           $table->string('name');
           $table->date('date_of_birth');
-          $table->integer('weight');
           $table->string('gender');
           $table->string('scientific_species_name');
           $table->string('common_species_name');

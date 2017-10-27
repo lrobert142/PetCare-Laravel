@@ -44,4 +44,15 @@ class WeighingsController extends Controller
       ]
     ]);
   }
+
+  public function destroy(Weighing $weighing)
+  {
+    $weighing->delete();
+    return redirect('/pets/' . request('pet_id'))->with('notifications', [
+      'type' => 'success',
+      'messages' => [
+        'Successfully removed weighing'
+      ]
+    ]);
+  }
 }

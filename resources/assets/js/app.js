@@ -12,4 +12,11 @@ $(function() {
       e.preventDefault();
     }
   });
+
+  $('body').on('click', '.weighing--delete input[type=submit]', function(e) {
+    var shouldDelete = confirm("Are you sure you want to delete this weighing record?");
+    if (!shouldDelete) {
+      e.preventDefault();
+    }
+  });
 });

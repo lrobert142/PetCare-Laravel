@@ -62,6 +62,13 @@
             <td>
               <a data-remodal-target="view-weighing-{{ $weighing->id }}">VIEW</a>
               <a data-remodal-target="edit-weighing-{{ $weighing->id }}">EDIT</a>
+              <form class="weighing--delete" method="POST" action="/weighing/{{ $weighing->id }}">
+                {{ csrf_field() }}
+                {{ method_field('DELETE') }}
+                <input type="hidden" name="pet_id" value="{{ $pet->id }}" />
+                <input type="hidden" name="id" value="{{ $weighing->id }}" />
+                <input type="submit" value="Delete" />
+              </form>
             </td>
             <td>
               {{ $weighing->formatted_date }}

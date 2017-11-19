@@ -8,6 +8,7 @@ use Khill\Lavacharts\Lavacharts;
 use App\Pet;
 use App\Weighing;
 use App\Http\Requests\AddNewPet;
+use App\Http\Requests\UpdatePet;
 
 class PetsController extends Controller
 {
@@ -79,6 +80,33 @@ class PetsController extends Controller
         'type' => 'success',
         'messages' => [
           'Successfully added new pet: ' . request('name')
+        ]
+      ]);
+    }
+
+    public function update(UpdatePet $request)
+    {
+      $pet_record = Pet::find( request('pet_id') );
+
+      $pet_record->name = request('name');
+      $pet_record->date_of_birth = request('date_of_birth');
+      $pet_record->gender = request('gender');
+      $pet_record->scientific_species_name = request('scientific_species_name');
+      $pet_record->common_species_name = request('common_species_name');
+      $pet_record->length = request('length');
+      $pet_record->notes = request('notes');
+
+      if( isset(request()->photo) ):
+        $path = request()->photo->store('images', 'public');
+        $pet_record->photo_url = $path;
+      endif;
+
+      $pet_record->save();
+
+      return redirect('/pets/' . request('id') . '#')->with('notifications', [
+        'type' => 'success',
+        'messages' => [
+          'Successfully updated pet!'
         ]
       ]);
     }

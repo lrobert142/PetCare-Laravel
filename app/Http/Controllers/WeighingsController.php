@@ -18,7 +18,7 @@ class WeighingsController extends Controller
       'notes' => request('notes'),
     ]);
 
-    return redirect('/pets/' . request('pet_id'))->with('notifications', [
+    return redirect('/pets/' . request('pet_id') . '#')->with('notifications', [
       'type' => 'success',
       'messages' => [
         'Successfully added weighing.'
@@ -37,7 +37,7 @@ class WeighingsController extends Controller
     $weighing_record->save();
 
 
-    return redirect('/pets/' . request('pet_id'))->with('notifications', [
+    return redirect('/pets/' . request('pet_id') . '#')->with('notifications', [
       'type' => 'success',
       'messages' => [
         'Successfully updated weighing.'

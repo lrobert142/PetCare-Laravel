@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Khill\Lavacharts\Lavacharts;
 use App\Pet;
 use App\Weighing;
+use App\LengthRecord;
 use App\Http\Requests\AddNewPet;
 use App\Http\Requests\UpdatePet;
 
@@ -21,6 +22,7 @@ class PetsController extends Controller
 
     public function show(Pet $pet)
     {
+      // TODO Get Length data
       $lava = new LavaCharts;
       $weighings = Pet::weighings_with_diffs($pet->id);
       $weighingsTable = $lava->DataTable();
@@ -53,9 +55,9 @@ class PetsController extends Controller
 
     public function store(AddNewPet $request)
     {
-      $path = request()->photo->store('images', 'public');
-
       DB::transaction(function () {
+        $path = request()->photo->store('images', 'public');
+
         $pet = Pet::create([
           'name' => request('name'),
           'date_of_birth' => request('date_of_birth'),
@@ -63,7 +65,6 @@ class PetsController extends Controller
           'gender' => request('gender'),
           'scientific_species_name' => request('scientific_species_name'),
           'common_species_name' => request('common_species_name'),
-          'length' => request('length'),
           'notes' => request('notes'),
         ]);
 
@@ -73,10 +74,17 @@ class PetsController extends Controller
           'is_initial' => true,
           'notes' => 'Initial Weight',
         ]);
+
+        LengthRecord::create([
+          'pet_id' => $pet->id,
+          'length' => request('length'),
+          'is_initial' => true,
+          'notes' => 'Initial Length',
+        ]);
       });
 
 
-      return redirect('/pets')->with('notifications', [
+      return redirect('/pets/#')->with('notifications', [
         'type' => 'success',
         'messages' => [
           'Successfully added new pet: ' . request('name')

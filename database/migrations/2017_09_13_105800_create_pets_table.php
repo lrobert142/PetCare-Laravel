@@ -16,7 +16,6 @@ class CreatePetsTable extends Migration
           $table->string('gender');
           $table->string('scientific_species_name');
           $table->string('common_species_name');
-          $table->integer('length');
           $table->text('notes')->nullable();
           $table->timestamps();
           $table->softDeletes();

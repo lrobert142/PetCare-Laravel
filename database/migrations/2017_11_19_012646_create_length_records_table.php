@@ -9,7 +9,7 @@ class CreateLengthRecordsTable extends Migration
     public function up()
     {
       Schema::enableForeignKeyConstraints();
-      Schema::create('lengthRecords', function (Blueprint $table) {
+      Schema::create('length_records', function (Blueprint $table) {
         $table->increments('id');
         $table->integer('pet_id')->unsigned();
         $table->date('date')->default(\Carbon\Carbon::now());
@@ -25,6 +25,6 @@ class CreateLengthRecordsTable extends Migration
 
     public function down()
     {
-        Schema::dropIfExists('lengthRecords');
+        Schema::dropIfExists('length_records');
     }
 }

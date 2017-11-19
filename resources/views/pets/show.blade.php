@@ -27,10 +27,10 @@
   </p>
   <p>
     <strong>Current Length:</strong>
-    @if($pet->length > 100)
-      {{ sprintf("%0.2f",$pet->length / 100) }}m
+    @if($pet->length() > 100)
+      {{ sprintf("%0.2f",$pet->length() / 100) }}m
     @else
-      {{ $pet->length }}cm
+      {{ $pet->length() }}cm
     @endif
   </p>
 
@@ -206,7 +206,7 @@
       <input id="common_species_name" type="text" name="common_species_name" placeholder="Ex. Olive Python" value="{{ $pet->common_species_name }}" required />
 
       <label for="length">Length(cm)*</label>
-      <input id="length" type="text" name="length" placeholder="Length(cm)" value="{{ $pet->length }}" required />
+      <input id="length" type="text" name="length" placeholder="Length(cm)" value="{{ $pet->length() }}" required />
 
       <label for="notes">Notes</label>
       <textarea id="notes" name="notes" rows="5" placeholder="Notes (optional)">{{ $pet->notes }}</textarea>
@@ -229,7 +229,7 @@
       </div>
     @endif
 
-    <form method="POST" action="/pets/{{$pet->id}}#add-length-record" enctype="multipart/form-data">
+    <form method="POST" action="/lengthRecords" enctype="multipart/form-data">
       <label for="date">Date*</label>
       <input id="date" type="date" name="date" placeholder="Date Length Recorded" value={{ now() }} required />
 

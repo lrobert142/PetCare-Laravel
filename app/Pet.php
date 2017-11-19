@@ -18,7 +18,6 @@ class Pet extends Model
     'gender',
     'scientific_species_name',
     'common_species_name',
-    'length',
     'notes',
   ];
 
@@ -55,4 +54,38 @@ class Pet extends Model
 
     return $newWeighings;
   }
+
+  public function length() {
+    // Use 'desc' order to get the latest length record first
+    return LengthRecord::where('pet_id', $this->id)->orderBy('date', 'desc')->first()->length;
+  }
+
+  public static function length_records_scope($pet_id) {
+    return LengthRecord::where('pet_id', $pet_id)->orderBy('date', 'asc');
+  }
+
+  // public static function lengths_with_diffs($pet_id) {
+  //   $weighings = Weighing::where('pet_id', $pet_id)->orderBy('date', 'asc')->get();
+  //   $previousWeighing = null;
+  //   $newWeighings = [];
+  //
+  //   foreach($weighings as $weighing):
+  //     if( $previousWeighing != null ):
+  //       $weightDiffGrams = $weighing->weight - $previousWeighing->weight;
+  //       $weightDiffPercentage = ($weighing->weight - $previousWeighing->weight)/$previousWeighing->weight * 100;
+  //     else:
+  //       $weightDiffGrams = 0;
+  //       $weightDiffPercentage = 0;
+  //     endif;
+  //
+  //     $weighing->formatted_date = \Carbon\Carbon::parse($weighing->date)->format('dS F Y');
+  //     $weighing->diff_grams = $weightDiffGrams;
+  //     $weighing->diff_percent = $weightDiffPercentage;
+  //     array_push($newWeighings, $weighing);
+  //
+  //     $previousWeighing = $weighing;
+  //   endforeach;
+  //
+  //   return $newWeighings;
+  // }
 }

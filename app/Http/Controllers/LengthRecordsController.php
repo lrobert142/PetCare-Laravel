@@ -13,7 +13,7 @@ class LengthRecordsController extends Controller
     LengthRecord::create([
       'pet_id' => request('pet_id'),
       'date' => request('date'),
-      'weight' => request('length'),
+      'length' => request('length'),
       'notes' => request('notes'),
     ]);
 

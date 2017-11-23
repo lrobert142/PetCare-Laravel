@@ -2,13 +2,13 @@
 <html>
   <head>
     @section('html-header')
-      @include('partials.html-header')
+      @include('globals.html-header')
     @show
   </head>
 
   <body>
     @section('header')
-      @include('partials.header')
+      @include('globals.header')
     @show
 
     @section('content')
@@ -18,11 +18,11 @@
     @show
 
     @section('footer')
-      @include('partials.footer')
+      @include('globals.footer')
     @show
 
     @section('html-footer')
-      @include('partials.html-footer')
+      @include('globals.html-footer')
     @show
   </body>
 </html>

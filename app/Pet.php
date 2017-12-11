@@ -69,17 +69,17 @@ class Pet extends Model
     $previousLengthRecord = null;
     $newLengthRecords = [];
 
-    foreach($LengthRecords as $lengthRecord):
+    foreach($lengthRecords as $lengthRecord):
       if( $previousLengthRecord != null ):
-        $lengthDiffGrams = $lengthRecord->length - $previousLengthRecord->length;
-        $lengthDiffPercentage = ($lengthRecord->length - $previousLengthRecord->length)/$previousLengthRecord->weight * 100;
+        $lengthDiffCm = $lengthRecord->length - $previousLengthRecord->length;
+        $lengthDiffPercentage = ($lengthRecord->length - $previousLengthRecord->length)/$previousLengthRecord->length * 100;
       else:
-        $lengthDiffGrams = 0;
+        $lengthDiffCm = 0;
         $lengthDiffPercentage = 0;
       endif;
 
       $lengthRecord->formatted_date = \Carbon\Carbon::parse($lengthRecord->date)->format('dS F Y');
-      $lengthRecord->diff_grams = $lengthDiffGrams;
+      $lengthRecord->diff_cm = $lengthDiffCm;
       $lengthRecord->diff_percent = $lengthDiffPercentage;
       array_push($newLengthRecords, $lengthRecord);
 

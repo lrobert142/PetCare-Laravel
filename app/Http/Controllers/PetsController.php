@@ -22,9 +22,11 @@ class PetsController extends Controller
 
     public function show(Pet $pet)
     {
-      // TODO Get Length data
-      $lava = new LavaCharts;
+      // TODO Get Length data chart?
       $weighings = Pet::weighings_with_diffs($pet->id);
+      $lengthRecords = Pet::lengths_with_diffs($pet->id);
+
+      $lava = new LavaCharts;
       $weighingsTable = $lava->DataTable();
 
       $weighingsTable->addDateColumn('Date')
@@ -50,7 +52,7 @@ class PetsController extends Controller
       ];
       $chart = $lava->LineChart('Weighings', $weighingsTable, $chartOptions);
 
-      return view('pets.show', compact('pet', 'weighings', 'lava'));
+      return view('pets.show', compact('pet', 'weighings', 'lengthRecords', 'lava'));
     }
 
     public function store(AddNewPet $request)

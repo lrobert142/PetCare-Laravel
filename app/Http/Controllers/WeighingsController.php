@@ -50,7 +50,7 @@ class WeighingsController extends Controller
     if( !$weighing->is_initial ):
       $weighing->delete();
       $notifications = array(
-        'type' => 'error',
+        'type' => 'success',
         'messages' => array(
           'Successfully removed weighing.'
         )

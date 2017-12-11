@@ -33,7 +33,7 @@
             <td>
               <a data-remodal-target="view-length-{{ $lengthRecord->id }}">VIEW</a>
               <a data-remodal-target="edit-length-{{ $lengthRecord->id }}">EDIT</a>
-              <form class="length--delete" method="POST" action="/length/{{ $lengthRecord->id }}">
+              <form class="length--delete" method="POST" action="/lengthRecords/{{ $lengthRecord->id }}">
                 {{ csrf_field() }}
                 {{ method_field('DELETE') }}
                 <input type="hidden" name="pet_id" value="{{ $pet->id }}" />
@@ -60,9 +60,9 @@
 
           <tr>
             <td>
-              {{-- @include('modals.weighings.view') --}}
+              @include('modals.length-records.view')
 
-              {{-- @include('modals.weighings.edit') --}}
+              @include('modals.length-records.edit')
             </td>
           </tr>
         @endforeach
